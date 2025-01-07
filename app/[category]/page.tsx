@@ -20,17 +20,16 @@ async function getData(category: string) {
 
 export const dynamic = "force-dynamic";
 
-export interface PageProps {
-    params: { category: string };
-  }
-
-export default async function CategoryPage({ params }: PageProps) {
-    const data: simplifiedProduct[] = await getData(params.category);
-  
+export default async function CategoryPage({
+  params,
+}: {
+  params: { category: string };
+}) {
+  const data: simplifiedProduct[] = await getData(params.category);
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6  lg:max-w-7xl lg:px-8">
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="flex justify-between items-center">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Our Products for {params.category}
@@ -53,8 +52,7 @@ export default async function CategoryPage({ params }: PageProps) {
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <Link href={`/product/${product.slug}`}
-                  >
+                    <Link href={`/product/${product.slug}`}>
                       {product.name}
                     </Link>
                   </h3>
