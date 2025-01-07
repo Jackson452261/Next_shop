@@ -2,9 +2,8 @@ import Link from "next/link";
 import { simplifiedProduct } from "../interface";
 import { client } from "../lib/sanity";
 import Image from "next/image";
- 
 
-async function getData(cateogry: string):Promise<simplifiedProduct[]> {
+async function getData(cateogry: string) {
   const query = `*[_type == "product" && category->name == "${cateogry}"] {
         _id,
           "imageUrl": images[0].asset->url,
@@ -24,7 +23,7 @@ export const dynamic = "force-dynamic";
 export default async function CategoryPage({
   params,
 }: {
-    params: Record<string, string>;
+  params: { category: string };
 }) {
   const data: simplifiedProduct[] = await getData(params.category);
 
@@ -53,7 +52,8 @@ export default async function CategoryPage({
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
-                    <Link href={`/product/${product.slug}`}>
+                    <Link href={`/product/${product.slug}`}
+                  >
                       {product.name}
                     </Link>
                   </h3>
