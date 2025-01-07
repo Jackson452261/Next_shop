@@ -24,7 +24,7 @@ export const dynamic = "force-dynamic";
 export default async function CategoryPage({
   params,
 }: {
-  params: { category: string };
+    params: Record<string, string>;
 }) {
   const data: simplifiedProduct[] = await getData(params.category);
 
