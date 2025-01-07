@@ -4,7 +4,7 @@ import { client } from "../lib/sanity";
 import Image from "next/image";
  
 
-async function getData(cateogry: string):Promise<any> {
+async function getData(cateogry: string):Promise<simplifiedProduct[]> {
   const query = `*[_type == "product" && category->name == "${cateogry}"] {
         _id,
           "imageUrl": images[0].asset->url,
