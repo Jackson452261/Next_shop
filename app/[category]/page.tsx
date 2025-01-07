@@ -2,8 +2,9 @@ import Link from "next/link";
 import { simplifiedProduct } from "../interface";
 import { client } from "../lib/sanity";
 import Image from "next/image";
+ 
 
-async function getData(cateogry: string) {
+async function getData(cateogry: string):Promise<any> {
   const query = `*[_type == "product" && category->name == "${cateogry}"] {
         _id,
           "imageUrl": images[0].asset->url,
