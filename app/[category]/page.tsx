@@ -20,12 +20,15 @@ async function getData(cateogry: string) {
 
 export const dynamic = "force-dynamic";
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
-  const data: simplifiedProduct[] = await getData(params.category);
+interface PageProps {
+  params: {
+    category: string;
+  };
+}
+
+export default async function CategoryPage({ params }: PageProps) {
+    const data: simplifiedProduct[] = await getData(params.category);
+  
 
   return (
     <div className="bg-white">
