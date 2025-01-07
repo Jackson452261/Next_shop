@@ -2,7 +2,6 @@ import Link from "next/link";
 import { simplifiedProduct } from "../interface";
 import { client } from "../lib/sanity";
 import Image from "next/image";
-import { PageProps } from 'next'; // 確保引入 
 
 async function getData(category: string) {
   const query = `*[_type == "product" && category->name == "${category}"] {
@@ -23,8 +22,9 @@ export const dynamic = "force-dynamic";
 
 export default async function CategoryPage({
   params,
-}:PageProps) {
-   
+}: {
+  params: { category: string };
+}) {
   const data: simplifiedProduct[] = await getData(params.category);
 
   return (
