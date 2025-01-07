@@ -2,6 +2,7 @@ import ImageGallery from "@/app/components/ImageGallery"
 import { fullProduct } from "@/app/interface"
 import { client } from "@/app/lib/sanity"
 import { Button } from "@/components/ui/button"
+import { PageProps } from 'next'; // 確保引入 
 
 async function getData(slug:string){
     const query = `*[_type == "product" && slug.current == "${slug}"][0]{
@@ -17,7 +18,10 @@ async function getData(slug:string){
     return data
 }
 
-export default  async function ProductPage({params} : {params: {slug: string}}){
+export default  async function ProductPage({params : 
+  params,
+}:PageProps) {
+   
     const data: fullProduct  = await getData((params.slug))
     return (
         <div className="bg-white">
